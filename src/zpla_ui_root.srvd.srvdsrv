@@ -1,0 +1,8 @@
+@EndUserText.label: 'Service definition for Root'
+define service Zpla_ui_root {
+  expose zpla_c_root as Root;
+  expose zpla_c_child1 as Child1;
+  expose zpla_c_child2 as Child2;
+  expose zpla_c_child3 as Child3;
+  expose zpla_i_table1 as Assa1;
+}

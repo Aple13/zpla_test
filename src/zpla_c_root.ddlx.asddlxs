@@ -1,0 +1,98 @@
+@Metadata.layer: #CORE
+@UI: {
+    headerInfo: { typeName: 'Root',
+                  typeNamePlural: 'Roots',
+                  title: { type: #STANDARD, label: 'Root' } }
+     }
+
+annotate view zpla_c_root with
+{
+
+  @UI.facet: [
+          { label: 'General Information',
+          id: 'GeneralInfo',
+          type: #COLLECTION,
+          position: 10 },
+
+          { id: 'Root',
+          purpose: #STANDARD,
+          type: #IDENTIFICATION_REFERENCE,
+          parentId: 'GeneralInfo',
+          position: 10 },
+
+          { id: 'Child1',
+          purpose: #STANDARD,
+          type: #LINEITEM_REFERENCE,
+          label: 'Child1',
+          position: 20,
+          targetElement: '_Child1'},
+
+          { id: 'Child2',
+          purpose: #STANDARD,
+          type: #LINEITEM_REFERENCE,
+          label: 'Child2',
+          position: 30,
+          targetElement: '_Child2'},
+
+          { id: 'Child3',
+          purpose: #STANDARD,
+          type: #LINEITEM_REFERENCE,
+          label: 'Child3',
+          position: 40,
+          targetElement: '_Child3'},
+          
+           { id: 'Assa1',
+          purpose: #STANDARD,
+          type: #LINEITEM_REFERENCE,
+          label: 'Assa1',
+          position: 50,
+          targetElement: '_Assa1'}
+  ]
+
+  @UI: { lineItem:       [{ position: 10 }],
+       identification: [{ position: 10 }] }
+  RootUuid;
+
+  @UI: { lineItem:       [{ position: 20 }],
+  identification: [{ position: 20 }],
+  selectionField: [{ position: 10 }] }
+  Field1;
+
+  @UI: { lineItem:       [{ position: 21 }],
+  identification: [{ position: 21 }] }
+  Field01;
+  @UI: { lineItem:       [{ position: 22 }],
+   identification: [{ position: 22 }] }
+  Field02;
+  @UI: { lineItem:       [{ position: 23 }],
+   identification: [{ position: 23 }] }
+  Field03;
+
+  @UI: { lineItem:       [{ position: 30 }],
+  identification: [{ position: 30 }] }
+  Field2;
+
+  @UI: { lineItem:       [{ position: 40 }],
+  identification: [{ position: 40 }] }
+  Field3;
+
+  @UI: { lineItem:       [{ position: 50 }],
+  identification: [{ position: 50 }] }
+  Field4;
+
+  @UI: { lineItem:       [{ position: 60 }],
+  identification: [{ position: 60 }] }
+  Field5;
+
+  @UI.hidden: true
+  CreatedBy;
+  @UI.hidden: true
+  CreatedAt;
+  @UI.hidden: true
+  LastChangedBy;
+  @UI.hidden: true
+  LastChangedAt;
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+}
