@@ -1,24 +1,31 @@
-unmanaged;
-//strict ( 1 );
+managed;
+//strict;
+with draft;
 
 define behavior for zpla_i_root alias Root
-implementation in class zbp_pla_i_root unique
-// late numbering
-lock master
+persistent table zpla_aroot
+draft table zpla_droot
+with additional save
+//late numbering
+lock master total etag LastChangedAt
 authorization master ( instance )
-//etag master <field_name>
+//etag master LastChangedAt
+
 {
   create;
   update;
   delete;
-  association _Child1 { create; }
-  association _Child2 { create; }
-  association _Child3 { create; }
+  association _Child1 { create; with draft; }
+  association _Child2 { create; with draft; }
+  association _Child3 { create; with draft; }
 
-  field ( mandatory ) RootUuid;
+
   field ( readonly ) CreatedBy, CreatedAt, LastChangedBy, LastChangedAt, LocalLastChangedAt;
   field ( mandatory ) Field1, Field2, Field3, Field4, Field5;
   field ( mandatory ) Field01, Field02, Field03, Field04, Field05;
+
+  field ( numbering : managed, readonly ) RootUuid;
+
 
   mapping for zpla_aroot
   {
@@ -48,6 +55,8 @@ authorization master ( instance )
 
 define behavior for zpla_i_child1 alias Child1
 implementation in class zbp_pla_i_child1 unique
+persistent table zpla_achild1
+draft table zpla_dchild1
 //late numbering
 lock dependent by _Root
 authorization dependent by _Root
@@ -56,11 +65,25 @@ authorization dependent by _Root
   update;
   delete;
   field ( readonly ) RootUuid;
-  association _Root;
+  field ( numbering : managed, readonly ) Child1Uuid;
+  association _Root { with draft; }
+
+  mapping for zpla_achild1
+  {
+    RootUuid = root_uuid;
+    Child1Uuid = child1_uuid;
+    Field1 = field_1;
+    Field2 = field_2;
+    Field3 = field_3;
+    Field4 = field_4;
+    Field5 = field_5;
+  }
 }
 
 define behavior for zpla_i_child2 alias Child2
 implementation in class zbp_pla_i_child2 unique
+persistent table zpla_achild2
+draft table zpla_dchild2
 //late numbering
 lock dependent by _Root
 authorization dependent by _Root
@@ -69,11 +92,25 @@ authorization dependent by _Root
   update;
   delete;
   field ( readonly ) RootUuid;
-  association _Root;
+  field ( numbering : managed, readonly ) Child2Uuid;
+  association _Root { with draft; }
+
+  mapping for zpla_achild2
+  {
+    RootUuid = root_uuid;
+    Child2Uuid = child2_uuid;
+    Field1 = field_1;
+    Field2 = field_2;
+    Field3 = field_3;
+    Field4 = field_4;
+    Field5 = field_5;
+  }
 }
 
 define behavior for zpla_i_child3 alias Child3
 implementation in class zbp_pla_i_child3 unique
+persistent table zpla_achild3
+draft table zpla_dchild3
 //late numbering
 lock dependent by _Root
 authorization dependent by _Root
@@ -82,5 +119,17 @@ authorization dependent by _Root
   update;
   delete;
   field ( readonly ) RootUuid;
-  association _Root;
+  field ( numbering : managed, readonly ) Child3Uuid;
+  association _Root { with draft; }
+
+  mapping for zpla_achild3
+  {
+    RootUuid = root_uuid;
+    Child3Uuid = child3_uuid;
+    Field1 = field_1;
+    Field2 = field_2;
+    Field3 = field_3;
+    Field4 = field_4;
+    Field5 = field_5;
+  }
 }

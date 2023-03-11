@@ -15,7 +15,8 @@ annotate view zpla_c_child1 with
                  label: 'Child1',
                  position: 10}]
 
-  @UI.hidden: true
+  @UI: { lineItem:       [{ position: 15 }],
+       identification: [{ position: 15 }] }
   Child1Uuid;
 
   @UI.hidden: true

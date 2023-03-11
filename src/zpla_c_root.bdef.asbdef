@@ -1,5 +1,6 @@
 projection;
 //strict ( 1 ); //Uncomment this line in order to enable strict mode 2. The strict mode has two variants (strict(1), strict(2)) and is prerequisite to be future proof regarding syntax and to be able to release your BO.
+use draft;
 
 define behavior for zpla_c_root alias Root
 {
@@ -7,9 +8,9 @@ define behavior for zpla_c_root alias Root
   use update;
   use delete;
 
-  use association _Child1 { create; }
-  use association _Child2 { create; }
-  use association _Child3 { create; }
+  use association _Child1 { create; with draft; }
+  use association _Child2 { create; with draft; }
+  use association _Child3 { create; with draft; }
 }
 
 define behavior for zpla_c_child1 alias Child1
@@ -17,7 +18,7 @@ define behavior for zpla_c_child1 alias Child1
   use update;
   use delete;
 
-  use association _Root;
+  use association _Root { with draft; }
 }
 
 define behavior for zpla_c_child2 alias Child2
@@ -25,7 +26,7 @@ define behavior for zpla_c_child2 alias Child2
   use update;
   use delete;
 
-  use association _Root;
+  use association _Root{ with draft; }
 }
 
 define behavior for zpla_c_child3 alias Child3
@@ -33,5 +34,5 @@ define behavior for zpla_c_child3 alias Child3
   use update;
   use delete;
 
-  use association _Root;
+  use association _Root{ with draft; }
 }
